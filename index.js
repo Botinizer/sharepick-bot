@@ -17,9 +17,6 @@ const bot = new TeleBot(process.env.TELEGRAM_BOT_TOKEN);
 bot.on(/\/picks?/i, (msg) => {
   	
   const pick  = (msg.text.match(urlRegex()) || [''])[0];
-  const allowedChannels = ['fccCaracas', 'Gracrys', 'darthloop'];
-  
-  if (!allowedChannels.includes(msg.chat.username)) return;
   if (pick !== '') {
     const db = firebase.database();
     addNewPick(pick, db, (error) => {
